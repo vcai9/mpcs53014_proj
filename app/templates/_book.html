@@ -1,0 +1,9 @@
+        <li class="article-list-vertical">
+            <a href="#" style="background-image: url({{ book.image_url }})"></a>
+            <div>
+                <h2><a href="#">{{ book.title }}</a></h2>
+                <p>{{ book.description | safe }}</p>
+                {% set gr_url = "https://www.goodreads.com/book/show/" ~ book.id  %}
+                <a href={{gr_url}} class="read-more">See more on Goodreads &rarr;</a>
+            </div>
+        </li>

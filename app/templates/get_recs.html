@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1> Book <br/>
+        Recommendations </h1>
+    <form action="" method="post" novalidate class="form">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.gr_id.label }}<br>
+            {{ form.gr_id(size=32, placeholder="14902785")}} <br>
+            {% for error in form.gr_id.errors %}
+                <div class="error">
+                {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.num_books.label }}<br>
+            {{ form.num_books(size=32, placeholder="10") }}
+            {% for error in form.num_books.errors %}
+                <div class="error">
+                {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(class_="form_button") }}</p>
+    </form>
+{% endblock %}

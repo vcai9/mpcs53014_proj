@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1> Your Recommendations: </h1>
+
+    <ul class="article-list-vertical">
+    {% for book in books %}
+        {% include '_book.html' %}
+    {% endfor %}
+    </ul>
+{% endblock %}
