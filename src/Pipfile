@@ -9,6 +9,9 @@ xmltodict = "*"
 requests = "*"
 numpy = "*"
 flask-table = "*"
+python-dotenv = "*"
+gunicorn = "*"
+flask-wtf = "*"
 
 [dev-packages]
 

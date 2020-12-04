@@ -3,7 +3,12 @@
 {% block content %}
     <h1> Book <br/>
         Recommendations </h1>
-    <form action="" method="post" novalidate class="form">
+    <script type="text/javascript">
+     function Load(){
+         document.getElementById("submit").innerHTML = "Loading..."
+     }
+     </script>
+    <form action="" method="post" novalidate class="form" onsubmit="JavaScript:Load()">
         {{ form.hidden_tag() }}
         <p>
             {{ form.gr_id.label }}<br>
@@ -23,6 +28,6 @@
                 </div>
             {% endfor %}
         </p>
-        <p>{{ form.submit(class_="form_button") }}</p>
+        <p id="submit">{{ form.submit(class_="form_button") }}</p>
     </form>
 {% endblock %}

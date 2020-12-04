@@ -15,5 +15,3 @@ def index():
             recs = recommend(id, num_books)
             return render_template('results.html', books=recs)
     return render_template('get_recs.html',  form=form)
-
-
