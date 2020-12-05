@@ -19,16 +19,8 @@ permissions:
       - directory
 
 hooks:
-  BeforeInstall:
-    - location: bin/before_install.sh
-      timeout: 120
-      runas: ec2-user
-  AfterInstall:
-    - location: bin/application_run.sh
-      timeout: 120
-      runas: ec2-user
   ApplicationStart:
-    - location: bin/application_start.sh
+    - location: bin/application_run.sh
       timeout: 120
       runas: ec2-user
 

@@ -1,5 +1,7 @@
 import os
 import pickle
+import requests
+import subprocess
 
 from flask import Flask
 from config import Config
@@ -9,16 +11,17 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 if os.getenv('WHEREAMI') == 'local':
-    PF_VALS_PATH = "/Users/vanessacai/big_data/pf_vals.pickle"
-    PF_KEYS_PATH = "/Users/vanessacai/big_data/pf_keys.pickle"
+    with open("/Users/vanessacai/big_data/pf_vals.pickle", 'rb') as f:
+        pf_vals = pickle.load(f)
+
+    with open("/Users/vanessacai/big_data/pf_keys.pickle", 'rb') as f:
+        pf_keys = pickle.load(f)
 else:
-    PF_VALS_PATH = "hdfs:///tmp/vycai/pf_vals.pickle"
-    PF_KEYS_PATH = "hdfs:///tmp/vycai/pf_keys.pickle"
+    r = requests.get("https://vycai-proj-2.s3.us-east-2.amazonaws.com/pf_keys.pickle")
+    pf_keys = pickle.loads(r.content)
 
-with open(PF_VALS_PATH, 'rb') as pickle_file:
-    pf_vals = pickle.load(pickle_file)
+    r = requests.get("https://vycai-proj-2.s3.us-east-2.amazonaws.com/pf_vals.pickle")
+    pf_vals = pickle.loads(r.content)
 
-with open(PF_KEYS_PATH, 'rb') as pickle_file:
-    pf_keys = pickle.load(pickle_file)
 
 from app import routes

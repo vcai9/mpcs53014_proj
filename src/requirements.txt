@@ -1,0 +1,8 @@
+gunicorn==20.0.4
+xmltodict==0.12.0
+numpy==1.19.1
+requests==2.24.0
+Flask==1.1.2
+flask_wtf==0.14.3
+WTForms==2.3.3
+supervisor==4.2.1
