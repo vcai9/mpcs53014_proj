@@ -78,16 +78,14 @@ h1 { color: #7cb6c4;
 
 .article-list-vertical li > a{
     float: left;
-    max_width: 200px;
-    display: block;
-
+    height: 300px;
+    width: 200px;
     background-size: cover;
 }
 
 .article-list-vertical li div{
     float: left;
     box-sizing: border-box;
-
     max-width: 350px;
     padding: 30px;
 }
