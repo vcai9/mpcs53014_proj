@@ -17,3 +17,5 @@ class BookForm(FlaskForm):
         r = requests.get(app.config['GOODREADS_URL'].format(app.config['GOODREADS_API_KEY'], id_input))
         if r.status_code == 404:
             self.gr_id.errors.append("Invalid Goodreads ID")
+            return False
+        return True
