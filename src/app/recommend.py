@@ -33,20 +33,17 @@ def _get_book_info(book_id):
 
 def recommend(user_id, n=10):
     user_books = _get_user_books(user_id)
-    Vt = np.matrix(np.asarray(pf_vals))
-    full_u = np.zeros(len(pf_keys))
+    V = np.matrix(np.asarray(pf_vals))
+    U = np.zeros(len(pf_keys))
 
-    def set_rating(key, val):
+    for (book, rating) in user_books:
         try:
-            idx = pf_keys.index(key)
-            full_u.itemset(idx, val)
+            idx = pf_keys.index(book)
+            U.itemset(idx, rating)
         except:
             pass
 
-    for (book, rating) in user_books:
-        set_rating(book, rating)
-
-    recommendations = full_u * Vt * Vt.T
+    recommendations = U * V * V.T
     top_n_recommended_book_ixs = np.where(recommendations >= np.sort(recommendations)[:, -n:].min())[1]
     top_n_recommended_book_ids = np.take(pf_keys, top_n_recommended_book_ixs)
     books = [_get_book_info(book_id) for book_id in top_n_recommended_book_ids]
